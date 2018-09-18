@@ -1,0 +1,186 @@
+body{
+    background-color: rgba(0, 0, 0, 0.75);
+    font-family: Lato, sans-serif;
+
+  }
+  .paticka{
+    color: black;
+  }.paticka>p>a{
+    color: rgba( 0, 0, 255, 0.7);
+    text-decoration: none;
+  }.paticka>p>a:hover {
+    color: blue;
+  }
+  button {
+  float: left;
+  width: 60px;
+  height: 60px;
+  font-size: 25px;
+  margin: 5px;
+  border-radius: 30px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.2s;
+  cursor: pointer;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  outline:none;
+  border: none;
+  color:white;  }
+
+#container {
+  max-width: 280px;
+  margin: auto;
+  margin-top: 50px;
+  background-color: rgba(189, 183, 170, 0.75);
+  /*background-color: #BDB7AA;*/
+  border: 2px solid #AAB0BD;
+  border-radius: 15px;
+  padding: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 20px; }
+
+.power {
+  font-size: 40px;
+  background-color: rgba(255, 255, 255, 0.95);
+  /*background-color: white;*/
+  color: black; }
+.power:hover {
+  border: 2px solid black;
+  color: black; }
+#hony{
+  text-align: center;
+  font-family: Lato, sans-serif;
+  font-weight: bold;}
+#off {
+  font-size: 25px;
+  background-color: black;
+  color: white; }
+#off:hover {
+  font-size: 25px;
+  background-color: white;
+  border: 2px solid black;
+  color: black; }
+
+#on {
+  font-size: 25px;
+  background-color: red;  
+  color: white; }
+#on:hover {
+  font-size: 28px;
+  text-align: center;
+  background-color: white;
+  border: 2px solid red;
+  color: red; }
+
+#red {  background-color: #FF191B;  }
+#red:hover {
+  background-color: white;
+  border: 2px solid #FF191B;
+  color: black; }
+
+#red1 { background-color: #FF5319;  }
+#red1:hover {
+  background-color: white;
+  border: 2px solid #FF5319;  }
+
+#red2 { background-color: #FF6A5E;  }
+#red2:hover {
+  background-color: white;
+  border: 2px solid #FF6A5E;  }
+
+#red3 { background-color: #FF926B;  }
+#red3:hover {
+  background-color: white;
+  border: 2px solid #FF926B;  }
+
+#red4 { background-color: #F3F62F;  }
+#red4:hover {
+  background-color: white;
+  border: 2px solid #F3F62F;  }
+
+#green {  background-color: #288F00;  }
+#green:hover {
+  background-color: white;
+  border: 2px solid #288F00;
+  color: black; }
+
+#green1 { background-color: #3CD45F;  }
+#green1:hover {
+  background-color: white;
+  border: 2px solid #3CD45F;
+  color: black;
+  }
+#green2 { background-color: #47E3C6;  }
+#green2:hover {
+  background-color: white;
+  border: 2px solid #47E3C6;
+  color: black; }
+
+#green3 { background-color: #44C5DE;  }
+#green3:hover {
+  background-color: white;
+  border: 2px solid #44C5DE;  }
+
+#green4 { background-color: #289AE3;  }
+#green4:hover {
+  background-color: white;
+  border: 2px solid #289AE3;
+  color: black; }
+
+#blue { background-color: #122B9C;  }
+#blue:hover {
+  background-color: white;
+  border: 2px solid #122B9C;
+  color: black; }
+
+#blue1 {  background-color: #6C6CD4;  }
+#blue1:hover {
+  background-color: white;
+  border: 2px solid #6C6CD4;
+  color: black; }
+
+#blue2 {  background-color: #5D2AE3;  }
+#blue2:hover {
+  background-color: white;
+  border: 2px solid #5D2AE3;
+  color: black; }
+
+#blue3 {  background-color: #9025DE;  }
+#blue3:hover {
+  background-color: white;
+  border: 2px solid #9025DE;
+  color: black; }
+
+#blue4 {  background-color: #BE11E3;  }
+#blue4:hover {
+  background-color: white;
+  border: 2px solid #BE11E3;
+  color: black; }
+
+#white {
+  background-color: white;
+  color: black; }
+#white:hover {
+  background-color: white;
+  border: 2px solid black;
+  color: black; }
+.function1 {
+  font-size: 25px;  }
+.function1:hover {
+  background-color: white;
+  /*border: 2px solid #5A6170;*/
+  color: black;
+  font-size: 20px;
+  text-align: center;  }
+.function {
+  font-size: 13px;
+  background-color: rgba(90, 97, 112, 0.75);
+  /*background-color: #5A6170;*/  }
+.function:hover {
+  background-color: white;
+  border: 2px solid #5A6170;
+  color: black;
+  font-size: 15px;
+  text-align: center;  }
