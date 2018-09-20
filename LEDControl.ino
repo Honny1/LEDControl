@@ -5,28 +5,14 @@
 #include <ESP8266WebServer.h>
 #include <Adafruit_NeoPixel.h>
 
+#include "index.h"
+
 
 ESP8266WiFiMulti wifiMulti;
 
 ESP8266WebServer server(80);
 
-String INDEX_HTML = R"=====(
-<!DOCTYPE HTML>
-  <html lang="en">
-    <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <title>GODs Controler</title>
-        </head>
-          <body> 
-            <form action="SetColor" method="POST">
-              <input type="color" name="color" placeholder="color">
-              <input type="submit" value="SetColor">
-            </form>
-          </body>
-</html>
-)=====";
+
 
 void handleRoot();              
 void handleSetColor();
@@ -63,9 +49,14 @@ int color2=6;
 int color5=999;
 int BRIGHTNESS=50;
 int BRIGHTNESS1=10;
-
+byte LED1COLOR[] = { 0xFF, 0xFF, 0xFF };
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, PIN, NEO_GRB + NEO_KHZ800);
 
+void colorConverter(String value){
+     LED1COLOR[0]= value.substring(0,2).toInt();
+     LED1COLOR[1]=value.substring(2,4).toInt();
+     LED1COLOR[2]= value.substring(4,6).toInt();
+}
 void brightnessPlus(){
   BRIGHTNESS+=10;
   if(BRIGHTNESS>100){
@@ -140,13 +131,13 @@ void setup() {
   } else {
     Serial.println("Error setting up MDNS responder!");
   }
-
+ 
   server.on("/", HTTP_GET, handleRoot);        // Call the 'handleRoot' function when a client requests URI "/"
   server.on("/SetColor", HTTP_POST, handleSetColor); // Call the 'handleLogin' function when a POST request is made to URI "/login"
   server.onNotFound(handleNotFound);           // When a client requests an unknown URI (i.e. something other than "/"), call function "handleNotFound"
 
   server.on("/off", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color2=color1;
     color1=3;
     Serial.print("Pressed: ");
@@ -154,35 +145,35 @@ void setup() {
     delay(1000);
   });
   server.on("/on", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=color2;
     Serial.print("Pressed: ");
     Serial.println("on");
     delay(1000);
   });
   server.on("/red", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=4;
     Serial.print("Pressed: ");
     Serial.println("red");
     delay(1000);
   });
   server.on("/green", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=5;
     Serial.print("Pressed: ");
     Serial.println("green");
     delay(1000);
   });
   server.on("/blue", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=6;
     Serial.print("Pressed: ");
     Serial.println("blue");
     delay(1000);
   });
   server.on("/white", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=7;
     Serial.print("Pressed: ");
     Serial.println("white");
@@ -190,84 +181,84 @@ void setup() {
   });
 
   server.on("/red1", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=8;
     Serial.print("Pressed: ");
     Serial.println("red1");
     delay(1000);
   });
   server.on("/green1", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=12;
     Serial.print("Pressed: ");
     Serial.println("green1");
     delay(1000);
   });
   server.on("/blue1", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=16;
     Serial.print("Pressed: ");
     Serial.println("blue1");
     delay(1000);
   });
   server.on("/red2", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=9;
     Serial.print("Pressed: ");
     Serial.println("red2");
     delay(1000);
   });
   server.on("/green2", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=13;
     Serial.print("Pressed: ");
     Serial.println("green2");
     delay(1000);
   });
   server.on("/blue2", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=17;
     Serial.print("Pressed: ");
     Serial.println("blue2");
     delay(1000);
   });
   server.on("/red3", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=10;
     Serial.print("Pressed: ");
     Serial.println("red3");
     delay(1000);
   });
   server.on("/green3", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=14;
     Serial.print("Pressed: ");
     Serial.println("green3");
     delay(1000);
   });
   server.on("/blue3", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=18;
     Serial.print("Pressed: ");
     Serial.println("blue3");
     delay(1000);
   });
   server.on("/red4", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=11;
     Serial.print("Pressed: ");
     Serial.println("red4");
     delay(1000);
   });
   server.on("/green4", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=15;
     Serial.print("Pressed: ");
     Serial.println("green4");
     delay(1000);
   });
   server.on("/blue4", []() {
-    server.send(200, "text/html", webPage);
+    server.send(200, "text/html", INDEX_HTML);
     color1=19;
     Serial.print("Pressed: ");
     Serial.println("blue4");
@@ -298,7 +289,8 @@ void handleRoot() {
 void handleSetColor() {                        
   if(server.arg("color") != NULL) {
     server.send(200, "text/html", INDEX_HTML);
-    Serial.println(server.arg("color"));
+    colorConverter(server.arg("color"));
+    setColor(strip.Color(LED1COLOR[0],LED1COLOR[1],LED1COLOR[2]));
     return;
   }
 }
