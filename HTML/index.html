@@ -9,9 +9,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="./control.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
-      input[type=text], input[type=password], input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=week], input[type=email], input[type=number], input[type=search], input[type=tel], input[type=time], input[type=url], input[type=color], textarea {
+      input[type=text], input[type=password], input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=week], input[type=email], input[type=number], input[type=search], input[type=tel], input[type=time], input[type=url], input[type=color], textarea, input, .niceInput {
         border-radius: 0;
-        background-color: rgba(255, 255, 255, 0.75);/*#fff*/;
+        background-color: rgba(255, 255, 255, 0.75);
         border-style: solid;
         border-width: 1px;
         border-color: #ccc;
@@ -23,7 +23,7 @@
         height: 3rem;
         margin: 0 0 1rem;
         padding: .5rem;
-        width: 75%;
+        width: 6em; /*75%;*/
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
@@ -86,10 +86,15 @@
       <a href="green3"><button id="green3"></button></a>-->
     
       <!--<div style="clear : both"></div>-->
+      <script src="jscolor.js"></script>
       <center>
         <form action="SetColor" method="POST">
           <!--<input type="color" name="color" placeholder="color" class="mui-input">-->
-          <input valign="bottom" align="middle" id="background-color" type="color" value="#deee00" onchange="javascript:document.getElementById('chosen-color').value = document.getElementById('background-color').value;">
+          <div class="niceInput">
+            <input id="background-color" value="906090" class="jscolor {position: cenetr, borderColor:'#FFF', insetColor:'#FFF', backgroundColor:'#424242', }">
+            <!--<input id="background-color" value="906090" class="jscolor {width:243, height:150, position:'right', borderColor:'#FFF', insetColor:'#FFF', backgroundColor:'#424242', }">-->
+          </div><!-- 
+          <input valign="bottom" align="middle" id="background-color" type="color" value="#deee00" onchange="javascript:document.getElementById('chosen-color').value = document.getElementById('background-color').value;">-->
           <!--<input type="submit" value="SetColor">-->
           <button class="function" type="submit" value="SetColor">Set color</button>
         </form>
