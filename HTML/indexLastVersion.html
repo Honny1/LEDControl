@@ -1,0 +1,294 @@
+<!DOCTYPE HTML>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LED CONTROLLER</title>
+    <style type="text/css">
+      input[type=text], input[type=password], input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=week], input[type=email], input[type=number], input[type=search], input[type=tel], input[type=time], input[type=url], input[type=color], textarea, input, .niceInput {
+        border-radius: 0;
+        background-color: rgba(255, 255, 255, 0.75);
+        border-style: solid;
+        border-width: 1px;
+        border-color: #ccc;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+        color: rgba(0,0,0,.75);
+        /*display: block;*/
+        font-family: inherit;
+        font-size: 12px;
+        height: 3rem;
+        margin: 0 0 1rem;
+        padding: .5rem;
+        width: 6em; /*75%;*/
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition: border-color .15s linear,background .15s linear;
+        -moz-transition: border-color .15s linear,background .15s linear;
+        -ms-transition: border-color .15s linear,background .15s linear;
+        -o-transition: border-color .15s linear,background .15s linear;
+        transition: border-color .15s linear,background .15s linear;
+}
+    
+body{
+    background-color: rgba(0, 0, 0, 0.75);
+    font-family: Lato, sans-serif;
+  }
+  .paticka{
+    color: black;
+  }.paticka>p>a{
+    color: rgba( 0, 0, 255, 0.7);
+    text-decoration: none;
+  }.paticka>p>a:hover {
+    color: blue;
+  }
+  button {
+  float: left;
+  width: 60px;
+  height: 60px;
+  font-size: 25px;
+  margin: 5px;
+  border-radius: 30px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.2s;
+  cursor: pointer;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  outline:none;
+  border: none;
+  color:white;  }
+
+#container {
+  max-width: 280px;
+  margin: auto;
+  margin-top: 50px;
+  background-color: rgba(189, 183, 170, 0.75);
+  /*background-color: #BDB7AA;*/
+  border: 2px solid #AAB0BD;
+  border-radius: 15px;
+  padding: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 20px; }
+
+.power {
+  font-size: 25px;
+  background-color: rgba(255, 255, 255, 0.95);
+  /*background-color: white;*/
+  color: black; }
+.power:hover {
+  border: 2px solid black;
+  color: black; }
+#hony{
+  text-align: center;
+  font-family: Lato, sans-serif;
+  font-weight: bold;}
+#off {
+  font-size: 25px;
+  background-color: black;
+  color: white; }
+#off:hover {
+  font-size: 25px;
+  background-color: white;
+  border: 2px solid black;
+  color: black; }
+
+#on {
+  font-size: 25px;
+  background-color: red;  
+  color: white; }
+#on:hover {
+  font-size: 28px;
+  text-align: center;
+  background-color: white;
+  border: 2px solid red;
+  color: red; }
+
+#red {  background-color: #FF191B;  }
+#red:hover {
+  background-color: white;
+  border: 2px solid #FF191B;
+  color: black; }
+
+#red1 { background-color: #FF5319;  }
+#red1:hover {
+  background-color: white;
+  border: 2px solid #FF5319;  }
+
+#red2 { background-color: #FF6A5E;  }
+#red2:hover {
+  background-color: white;
+  border: 2px solid #FF6A5E;  }
+
+#red3 { background-color: #FF926B;  }
+#red3:hover {
+  background-color: white;
+  border: 2px solid #FF926B;  }
+
+#red4 { background-color: #F3F62F;  }
+#red4:hover {
+  background-color: white;
+  border: 2px solid #F3F62F;  }
+
+#green {  background-color: #288F00;  }
+#green:hover {
+  background-color: white;
+  border: 2px solid #288F00;
+  color: black; }
+
+#green1 { background-color: #3CD45F;  }
+#green1:hover {
+  background-color: white;
+  border: 2px solid #3CD45F;
+  color: black;
+  }
+#green2 { background-color: #47E3C6;  }
+#green2:hover {
+  background-color: white;
+  border: 2px solid #47E3C6;
+  color: black; }
+
+#green3 { background-color: #44C5DE;  }
+#green3:hover {
+  background-color: white;
+  border: 2px solid #44C5DE;  }
+
+#green4 { background-color: #289AE3;  }
+#green4:hover {
+  background-color: white;
+  border: 2px solid #289AE3;
+  color: black; }
+
+#blue { background-color: #122B9C;  }
+#blue:hover {
+  background-color: white;
+  border: 2px solid #122B9C;
+  color: black; }
+
+#blue1 {  background-color: #6C6CD4;  }
+#blue1:hover {
+  background-color: white;
+  border: 2px solid #6C6CD4;
+  color: black; }
+
+#blue2 {  background-color: #5D2AE3;  }
+#blue2:hover {
+  background-color: white;
+  border: 2px solid #5D2AE3;
+  color: black; }
+
+#blue3 {  background-color: #9025DE;  }
+#blue3:hover {
+  background-color: white;
+  border: 2px solid #9025DE;
+  color: black; }
+
+#blue4 {  background-color: #BE11E3;  }
+#blue4:hover {
+  background-color: white;
+  border: 2px solid #BE11E3;
+  color: black; }
+
+#white {
+  background-color: white;
+  color: black; }
+#white:hover {
+  background-color: white;
+  border: 2px solid black;
+  color: black; }
+.function1 {
+  font-size: 25px;  }
+.function1:hover {
+  background-color: white;
+  /*border: 2px solid #5A6170;*/
+  color: black;
+  font-size: 20px;
+  text-align: center;  }
+.function {
+  font-size: 13px;
+  background-color: rgba(90, 97, 112, 0.75);
+  /*background-color: #5A6170;*/  }
+.function:hover {
+  background-color: white;
+  border: 2px solid #5A6170;
+  color: black;
+  font-size: 15px;
+  text-align: center;  }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <a href="lightup"><button class="power" >+</button></a>
+      <a href="lightdown"><button class="power" >-</button></a>
+      <a href="off"><button id="off" class="off">OFF</button></a>
+      <a href="on"><button id="on" class="function1">ON</button></a>
+      <div style="clear : both"></div>
+
+      <a href="red"><button id="red">R</button></a>
+      <a href="green"><button id="green">G</button></a>
+      <a href="blue"><button id="blue">B</button></a>
+      <a href="white"><button id="white">W</button></a>
+      <div style="clear : both"></div>
+
+      <a href="red1"><button id="red1"></button></a>
+      <a href="green1"><button id="green1"></button></a>
+      <a href="blue1"><button id="blue1"></button></a>
+      <a href="flash"><button class="function">FLASH</button></a>
+      <div style="clear : both"></div>
+
+      <a href="red2"><button id="red2"></button></a>
+      <a href="green2"><button id="green2"></button></a>
+      <a href="blue2"><button id="blue2"></button></a>
+      <a href="strobe"><button class="function">STROBE</button></a>
+      <div style="clear : both"></div>
+
+      <a href="red3"><button id="red3"></button></a>
+      <a href="green3"><button id="green3"></button></a>
+      <a href="blue3"><button id="blue3"></button></a>
+      <a href="fade"><button class="function">FADE</button></a>
+      <div style="clear : both"></div>
+
+      <a href="red4"><button id="red4"></button></a>
+      <a href="green4"><button id="green4"></button></a>
+      <a href="blue4"><button id="blue4"></button></a>
+      <a href="smooth"><button style="font-size: 11px;" class="function">SMOOTH</button></a>
+      <div style="clear : both"></div>
+
+      <!--  
+      <a href="green4"><button id="green4"></button></a>
+      <a href="blue4"><button id="blue4"></button></a>
+      <a href="red2"><button id="red2"></button></a>
+      <a href="green2"><button id="green2"></button></a>
+      <a href="blue2"><button id="blue2"></button></a>
+      <a href="green3"><button id="green3"></button></a>-->
+    
+      <!--<div style="clear : both"></div>-->
+      <script src="http://jscolor.com/release/2.0/jscolor-2.0.5/jscolor.js"></script>
+      <center>
+        <form action="SetColor" method="POST">
+          <!--<input type="color" name="color" placeholder="color" class="mui-input">-->
+          <div class="niceInput">
+            <input name="color" placeholder="color" id="background-color" value="906090" class="jscolor {position: cenetr, borderColor:'#FFF', insetColor:'#FFF', backgroundColor:'#424242', }">
+            <!--<input id="background-color" value="906090" class="jscolor {width:243, height:150, position:'right', borderColor:'#FFF', insetColor:'#FFF', backgroundColor:'#424242', }">-->
+          </div><!-- 
+          <input valign="bottom" align="middle" id="background-color" type="color" value="#deee00" onchange="javascript:document.getElementById('chosen-color').value = document.getElementById('background-color').value;">-->
+          <!--<input type="submit" value="SetColor">-->
+          <button class="function" type="submit" value="SetColor">Set color</button>
+        </form>
+      </center><!--
+
+      <a href="smooth"> <button style="font-size: 11px;" class="function">SMOOTH</button></a>
+      <a href="strobe"> <button style="font-size: 10px;" class="function">RAINBOW</button></a>
+      <a href="fade">   <button style="font-size: 17px;" class="function">FADE</button></a>-->
+      <div style="clear : both"></div>
+
+      <div class="paticka" style="text-align: center;">
+        <!--<hr >-->
+        <p style="text-align: center; font-size: 75%; border:0%; padding:0%"> Copyright &copy; 2018, <a href="https://buchticka.eu">Buchticka.eu</a> Team By Hony</p>
+      </div>
+    </div>
+  </body>
+  </html>
+
