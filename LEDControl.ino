@@ -112,7 +112,7 @@ void setup() {
 
   Serial.println('\n');
 
-  wifiMulti.addAP("Hony", "9E6wi76j");  
+  wifiMulti.addAP("ISSWF1", "xstudent25isswf100");  
 
   Serial.println("Connecting ...");
   int i = 0;

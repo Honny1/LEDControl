@@ -219,7 +219,7 @@ body{
     </style>
   </head>
   <body>
-    <div id="container">
+    <div style="min-width: 290px; text-align: center;" id="container">
       <a href="lightup"><button class="power" >+</button></a>
       <a href="lightdown"><button class="power" >-</button></a>
       <a href="off"><button id="off" class="off">OFF</button></a>
@@ -268,25 +268,24 @@ body{
       <script src="http://jscolor.com/release/2.0/jscolor-2.0.5/jscolor.js"></script>
       <center>
         <form action="SetColor" method="POST">
-          <!--<input type="color" name="color" placeholder="color" class="mui-input">-->
-          <div class="niceInput">
-            <input name="color" placeholder="color" id="background-color" value="906090" class="jscolor {position: cenetr, borderColor:'#FFF', insetColor:'#FFF', backgroundColor:'#424242', }">
-            <!--<input id="background-color" value="906090" class="jscolor {width:243, height:150, position:'right', borderColor:'#FFF', insetColor:'#FFF', backgroundColor:'#424242', }">-->
-          </div><!-- 
-          <input valign="bottom" align="middle" id="background-color" type="color" value="#deee00" onchange="javascript:document.getElementById('chosen-color').value = document.getElementById('background-color').value;">-->
-          <!--<input type="submit" value="SetColor">-->
-          <button class="function" type="submit" value="SetColor">Set color</button>
-        </form>
-      </center><!--
-
-      <a href="smooth"> <button style="font-size: 11px;" class="function">SMOOTH</button></a>
-      <a href="strobe"> <button style="font-size: 10px;" class="function">RAINBOW</button></a>
-      <a href="fade">   <button style="font-size: 17px;" class="function">FADE</button></a>-->
+          <table>
+            <tr>
+              <td style="min-width: 40px; " >&nbsp;</td>
+              <td>
+                <input name="color" placeholder="color" id="background-color" value="906090" class="jscolor {position: center, borderColor:'#FFF', insetColor:'#FFF', backgroundColor:'#424242', }" class="mui-input">
+              </td>
+              <td style="min-width: 80px; " >&nbsp;</td>
+                <td>
+                  <button class="function" type="submit" value="SetColor">Set color</button>
+                </td>
+            </tr>
+          </table>
+      </center>
       <div style="clear : both"></div>
 
       <div class="paticka" style="text-align: center;">
         <!--<hr >-->
-        <p style="text-align: center; font-size: 75%; border:0%; padding:0%"> Copyright &copy; 2018, <a href="https://buchticka.eu">Buchticka.eu</a> Team By Hony</p>
+        <p style="text-align: center; font-size: 75%; border:0%; padding:0%"> Copyright &copy; 2018, By Hony & <a href="https://buchticka.eu">Buchticka.eu</a> Team</p>
       </div>
     </div>
   </body>
