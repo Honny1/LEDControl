@@ -7,12 +7,8 @@
 
 #include "index.h"
 
-
 ESP8266WiFiMulti wifiMulti;
-
 ESP8266WebServer server(80);
-
-
 
 void handleRoot();              
 void handleSetColor();
@@ -50,6 +46,7 @@ int color5=999;
 int BRIGHTNESS=50;
 int BRIGHTNESS1=10;
 byte LED1COLOR[] = { 0xFF, 0xFF, 0xFF };
+
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, PIN, NEO_GRB + NEO_KHZ800);
 
 void colorConverter(String value){
@@ -79,7 +76,6 @@ void RGB(unsigned long value) {
    r = value >> 16; 
    g = (value >> 8) & 0xFF; 
    b = value & 0xFF; 
-   setColor(strip.Color(r,g,b));
 }
 void ledColor(int color) {
   switch (color) {
@@ -103,6 +99,7 @@ void ledColor(int color) {
     case PURPLE_LIGHT  : RGB(0x007A00BF); break;
     case PINK          : RGB(0x00FF00FF); break;
   }
+  setColor(strip.Color(r,g,b));
 }
 void setup() { 
   Serial.begin(115200);
@@ -112,7 +109,7 @@ void setup() {
 
   Serial.println('\n');
 
-  wifiMulti.addAP("ISSWF1", "xstudent25isswf100");  
+  wifiMulti.addAP("Hony", "9E6wi76j");  
 
   Serial.println("Connecting ...");
   int i = 0;
@@ -136,6 +133,20 @@ void setup() {
   server.on("/SetColor", HTTP_POST, handleSetColor); // Call the 'handleLogin' function when a POST request is made to URI "/login"
   server.onNotFound(handleNotFound);           // When a client requests an unknown URI (i.e. something other than "/"), call function "handleNotFound"
 
+  server.on("/lightup", []() {
+    server.send(200, "text/html", INDEX_HTML);
+    brightnessPlus();
+    Serial.print("Pressed: ");
+    Serial.println("up");
+    delay(1000);
+  });
+  server.on("/lightdown", []() {
+    server.send(200, "text/html", INDEX_HTML);
+    brightnessMinus();
+    Serial.print("Pressed: ");
+    Serial.println("down");
+    delay(1000);
+  });
   server.on("/off", []() {
     server.send(200, "text/html", INDEX_HTML);
     color2=color1;
@@ -289,8 +300,12 @@ void handleRoot() {
 void handleSetColor() {                        
   if(server.arg("color") != NULL) {
     server.send(200, "text/html", INDEX_HTML);
+    String coloris="0x00"+server.arg("color");
+    RGB(coloris.toInt());
+    /*
     colorConverter(server.arg("color"));
-    setColor(strip.Color(LED1COLOR[0],LED1COLOR[1],LED1COLOR[2]));
+    setColor(strip.Color(LED1COLOR[0],LED1COLOR[1],LED1COLOR[2]));*/
+    
     return;
   }
 }
