@@ -45,15 +45,9 @@ int color2=6;
 int color5=999;
 int BRIGHTNESS=50;
 int BRIGHTNESS1=10;
-byte LED1COLOR[] = { 0xFF, 0xFF, 0xFF };
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, PIN, NEO_GRB + NEO_KHZ800);
 
-void colorConverter(String value){
-     LED1COLOR[0]= value.substring(0,2).toInt();
-     LED1COLOR[1]=value.substring(2,4).toInt();
-     LED1COLOR[2]= value.substring(4,6).toInt();
-}
 void brightnessPlus(){
   BRIGHTNESS+=10;
   if(BRIGHTNESS>100){
@@ -302,10 +296,8 @@ void handleSetColor() {
     server.send(200, "text/html", INDEX_HTML);
     String coloris="0x00"+server.arg("color");
     RGB(coloris.toInt());
-    /*
-    colorConverter(server.arg("color"));
-    setColor(strip.Color(LED1COLOR[0],LED1COLOR[1],LED1COLOR[2]));*/
-    
+    setColor(strip.Color(r,g,b));
+
     return;
   }
 }
