@@ -103,7 +103,7 @@ void setup() {
 
   Serial.println('\n');
 
-  wifiMulti.addAP("Hony", "9E6wi76j");  
+  wifiMulti.addAP("IOT-VYUKA", "vyukapernes");  
 
   Serial.println("Connecting ...");
   int i = 0;
@@ -290,12 +290,24 @@ void loop(void) {
 void handleRoot() {                         
   server.send(200, "text/html", INDEX_HTML);
 }
-
+int StrToHex(char str[]){
+  return (int) strtol(str, 0, 16);
+}
 void handleSetColor() {                        
   if(server.arg("color") != NULL) {
     server.send(200, "text/html", INDEX_HTML);
-    String coloris="0x00"+server.arg("color");
-    RGB(coloris.toInt());
+    /*RGB("0x00"+server.arg("color"));
+    Serial.println(coloris);*/
+    
+    
+    String hexstring = server.arg("color");
+    long number = (long) strtol( &hexstring[1], NULL, 16);
+    r = number >> 16;
+    g = number >> 8 & 0xFF;
+    b = number & 0xFF;
+
+
+    Serial.println(r+g+b);
     setColor(strip.Color(r,g,b));
 
     return;
