@@ -45,6 +45,7 @@ int color2=6;
 int color5=999;
 int BRIGHTNESS=50;
 int BRIGHTNESS1=10;
+bool fade;
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, PIN, NEO_GRB + NEO_KHZ800);
 
@@ -103,7 +104,7 @@ void setup() {
 
   Serial.println('\n');
 
-  wifiMulti.addAP("IOT-VYUKA", "vyukapernes");  
+  wifiMulti.addAP("Hony", "9E6wi76j");  
 
   Serial.println("Connecting ...");
   int i = 0;
@@ -127,9 +128,18 @@ void setup() {
   server.on("/SetColor", HTTP_POST, handleSetColor); // Call the 'handleLogin' function when a POST request is made to URI "/login"
   server.onNotFound(handleNotFound);           // When a client requests an unknown URI (i.e. something other than "/"), call function "handleNotFound"
 
+  server.on("/fade", []() {
+    server.send(200, "text/html", INDEX_HTML);
+    fade=true;
+    while(fade){rainbow(20);server.handleClient();}
+    Serial.print("Pressed: ");
+    Serial.println("up");
+    delay(1000);
+  });
   server.on("/lightup", []() {
     server.send(200, "text/html", INDEX_HTML);
     brightnessPlus();
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("up");
     delay(1000);
@@ -137,6 +147,7 @@ void setup() {
   server.on("/lightdown", []() {
     server.send(200, "text/html", INDEX_HTML);
     brightnessMinus();
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("down");
     delay(1000);
@@ -145,6 +156,7 @@ void setup() {
     server.send(200, "text/html", INDEX_HTML);
     color2=color1;
     color1=3;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("off");
     delay(1000);
@@ -152,6 +164,7 @@ void setup() {
   server.on("/on", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=color2;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("on");
     delay(1000);
@@ -159,6 +172,7 @@ void setup() {
   server.on("/red", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=4;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("red");
     delay(1000);
@@ -166,6 +180,7 @@ void setup() {
   server.on("/green", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=5;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("green");
     delay(1000);
@@ -173,6 +188,7 @@ void setup() {
   server.on("/blue", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=6;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("blue");
     delay(1000);
@@ -180,6 +196,7 @@ void setup() {
   server.on("/white", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=7;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("white");
     delay(1000);
@@ -188,6 +205,7 @@ void setup() {
   server.on("/red1", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=8;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("red1");
     delay(1000);
@@ -195,6 +213,7 @@ void setup() {
   server.on("/green1", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=12;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("green1");
     delay(1000);
@@ -202,6 +221,7 @@ void setup() {
   server.on("/blue1", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=16;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("blue1");
     delay(1000);
@@ -209,6 +229,7 @@ void setup() {
   server.on("/red2", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=9;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("red2");
     delay(1000);
@@ -216,6 +237,7 @@ void setup() {
   server.on("/green2", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=13;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("green2");
     delay(1000);
@@ -223,6 +245,7 @@ void setup() {
   server.on("/blue2", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=17;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("blue2");
     delay(1000);
@@ -230,6 +253,7 @@ void setup() {
   server.on("/red3", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=10;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("red3");
     delay(1000);
@@ -237,6 +261,7 @@ void setup() {
   server.on("/green3", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=14;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("green3");
     delay(1000);
@@ -244,6 +269,7 @@ void setup() {
   server.on("/blue3", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=18;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("blue3");
     delay(1000);
@@ -251,6 +277,7 @@ void setup() {
   server.on("/red4", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=11;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("red4");
     delay(1000);
@@ -258,6 +285,7 @@ void setup() {
   server.on("/green4", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=15;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("green4");
     delay(1000);
@@ -265,6 +293,7 @@ void setup() {
   server.on("/blue4", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=19;
+    fade=false;
     Serial.print("Pressed: ");
     Serial.println("blue4");
     delay(1000);
@@ -287,34 +316,52 @@ void loop(void) {
   server.handleClient();
 }
 
-void handleRoot() {                         
+void handleRoot() {
+  fade=false;                         
   server.send(200, "text/html", INDEX_HTML);
 }
-int StrToHex(char str[]){
-  return (int) strtol(str, 0, 16);
-}
 void handleSetColor() {                        
+  fade=false;
   if(server.arg("color") != NULL) {
-    server.send(200, "text/html", INDEX_HTML);
-    /*RGB("0x00"+server.arg("color"));
-    Serial.println(coloris);*/
+    //server.send(200, "text/html", INDEX_HTML);
     
-    
-    String hexstring = server.arg("color");
-    long number = (long) strtol( &hexstring[1], NULL, 16);
+    String hexstring =server.arg("color");
+    long number = (long) strtol( &hexstring[0], NULL, 16);
     r = number >> 16;
-    g = number >> 8 & 0xFF;
-    b = number & 0xFF;
-
-
-    Serial.println(r+g+b);
+    g = (number & 0x00ff00) >> 8;
+    b = (number & 0x0000ff);
     setColor(strip.Color(r,g,b));
-
+    server.arg("color")=hexstring;
+    server.send(200, "text/html", INDEX_HTML);
     return;
+  }
+}
+uint32_t Wheel(byte WheelPos) {
+  WheelPos = 255 - WheelPos;
+  if(WheelPos < 85) {
+    return strip.Color(255 - WheelPos * 3, 0, WheelPos * 3);
+  }
+  if(WheelPos < 170) {
+    WheelPos -= 85;
+    return strip.Color(0, WheelPos * 3, 255 - WheelPos * 3);
+  }
+  WheelPos -= 170;
+  return strip.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
+}
+void rainbow(uint8_t wait) {
+  uint16_t i, j;
+
+  for(j=0; j<256; j++) {
+    for(i=0; i<strip.numPixels(); i++) {
+      strip.setPixelColor(i, Wheel((i+j) & 255));
+    }
+    strip.show();
+    delay(wait);
   }
 }
 
 void handleNotFound(){
+  fade=false;
   server.send(404, "text/plain", "404: Not found"); 
 }
 
