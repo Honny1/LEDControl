@@ -5,6 +5,7 @@
 #include <ESP8266WebServer.h>
 #include <Adafruit_NeoPixel.h>
 
+
 #include "index.h"
 
 ESP8266WiFiMulti wifiMulti;
@@ -14,6 +15,7 @@ void handleRoot();
 void handleSetColor();
 void handleNotFound();
 
+#define NUM_LEDS          60
 #define PIN D5
 #define ON                N/A
 #define OFF               3
@@ -37,6 +39,7 @@ void handleNotFound();
 #define PURPLE_DARK       17
 #define PURPLE_LIGHT      18
 #define PINK              19
+
  
 unsigned long rgb = 0;
 byte r,g,b;
@@ -45,9 +48,10 @@ int color2=6;
 int color5=999;
 int BRIGHTNESS=50;
 int BRIGHTNESS1=10;
-bool fade;
-
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, PIN, NEO_GRB + NEO_KHZ800);
+bool RAINBOW;
+bool TwinkleRandom;
+bool Strobe;
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
 
 void brightnessPlus(){
   BRIGHTNESS+=10;
@@ -128,10 +132,33 @@ void setup() {
   server.on("/SetColor", HTTP_POST, handleSetColor); // Call the 'handleLogin' function when a POST request is made to URI "/login"
   server.onNotFound(handleNotFound);           // When a client requests an unknown URI (i.e. something other than "/"), call function "handleNotFound"
 
-  server.on("/fade", []() {
+   server.on("/Strobe", []() {
     server.send(200, "text/html", INDEX_HTML);
-    fade=true;
-    while(fade){rainbow(20);server.handleClient();}
+    RAINBOW=false;
+    TwinkleRandom=false;
+    Strobe=true;
+    while(Strobe){strobe();}
+    Serial.print("Pressed: ");
+    Serial.println("up");
+    delay(1000);
+  });
+  server.on("/TwinkleRandom", []() {
+    server.send(200, "text/html", INDEX_HTML);
+    RAINBOW=false;
+    TwinkleRandom=true;
+    Strobe=false;
+    setColor(strip.Color(0,0,0));
+    while(TwinkleRandom){twinkleRandom(20, 100);}
+    Serial.print("Pressed: ");
+    Serial.println("up");
+    delay(1000);
+  });
+  server.on("/RAINBOW", []() {
+    server.send(200, "text/html", INDEX_HTML);
+    RAINBOW=true;
+    TwinkleRandom=false;
+    Strobe=false;
+    while(RAINBOW){rainbow(20);}
     Serial.print("Pressed: ");
     Serial.println("up");
     delay(1000);
@@ -139,7 +166,9 @@ void setup() {
   server.on("/lightup", []() {
     server.send(200, "text/html", INDEX_HTML);
     brightnessPlus();
-    fade=false;
+    RAINBOW=false;
+    TwinkleRandom=false;
+    Strobe=false;
     Serial.print("Pressed: ");
     Serial.println("up");
     delay(1000);
@@ -147,7 +176,9 @@ void setup() {
   server.on("/lightdown", []() {
     server.send(200, "text/html", INDEX_HTML);
     brightnessMinus();
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("down");
     delay(1000);
@@ -156,7 +187,9 @@ void setup() {
     server.send(200, "text/html", INDEX_HTML);
     color2=color1;
     color1=3;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("off");
     delay(1000);
@@ -164,7 +197,9 @@ void setup() {
   server.on("/on", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=color2;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("on");
     delay(1000);
@@ -172,7 +207,9 @@ void setup() {
   server.on("/red", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=4;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("red");
     delay(1000);
@@ -180,7 +217,9 @@ void setup() {
   server.on("/green", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=5;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("green");
     delay(1000);
@@ -188,7 +227,9 @@ void setup() {
   server.on("/blue", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=6;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("blue");
     delay(1000);
@@ -196,7 +237,9 @@ void setup() {
   server.on("/white", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=7;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("white");
     delay(1000);
@@ -205,7 +248,9 @@ void setup() {
   server.on("/red1", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=8;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("red1");
     delay(1000);
@@ -213,7 +258,9 @@ void setup() {
   server.on("/green1", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=12;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("green1");
     delay(1000);
@@ -221,7 +268,9 @@ void setup() {
   server.on("/blue1", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=16;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("blue1");
     delay(1000);
@@ -229,7 +278,9 @@ void setup() {
   server.on("/red2", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=9;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("red2");
     delay(1000);
@@ -237,7 +288,9 @@ void setup() {
   server.on("/green2", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=13;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("green2");
     delay(1000);
@@ -245,7 +298,9 @@ void setup() {
   server.on("/blue2", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=17;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("blue2");
     delay(1000);
@@ -253,7 +308,9 @@ void setup() {
   server.on("/red3", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=10;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("red3");
     delay(1000);
@@ -261,7 +318,9 @@ void setup() {
   server.on("/green3", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=14;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("green3");
     delay(1000);
@@ -269,7 +328,9 @@ void setup() {
   server.on("/blue3", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=18;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("blue3");
     delay(1000);
@@ -277,7 +338,9 @@ void setup() {
   server.on("/red4", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=11;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("red4");
     delay(1000);
@@ -285,7 +348,9 @@ void setup() {
   server.on("/green4", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=15;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("green4");
     delay(1000);
@@ -293,14 +358,18 @@ void setup() {
   server.on("/blue4", []() {
     server.send(200, "text/html", INDEX_HTML);
     color1=19;
-    fade=false;
+    RAINBOW=false;
+    Strobe=false;
+    TwinkleRandom=false;
     Serial.print("Pressed: ");
     Serial.println("blue4");
     delay(1000);
   });
   server.begin();
   Serial.println("HTTP server started");
+  
 }
+
 
 void loop(void) {
    if(color1!=color5){
@@ -317,11 +386,16 @@ void loop(void) {
 }
 
 void handleRoot() {
-  fade=false;                         
+  RAINBOW=false;
+  Strobe=false;
+  TwinkleRandom=false;                         
   server.send(200, "text/html", INDEX_HTML);
 }
+
 void handleSetColor() {                        
-  fade=false;
+  RAINBOW=false;
+  Strobe=false;
+  TwinkleRandom=false;
   if(server.arg("color") != NULL) {
     //server.send(200, "text/html", INDEX_HTML);
     
@@ -336,6 +410,14 @@ void handleSetColor() {
     return;
   }
 }
+
+void handleNotFound(){
+  RAINBOW=false;
+  Strobe=false;
+  TwinkleRandom=false;
+  server.send(404, "text/plain", "404: Not found"); 
+}
+
 uint32_t Wheel(byte WheelPos) {
   WheelPos = 255 - WheelPos;
   if(WheelPos < 85) {
@@ -354,14 +436,27 @@ void rainbow(uint8_t wait) {
   for(j=0; j<256; j++) {
     for(i=0; i<strip.numPixels(); i++) {
       strip.setPixelColor(i, Wheel((i+j) & 255));
+      server.handleClient();
     }
     strip.show();
     delay(wait);
   }
 }
 
-void handleNotFound(){
-  fade=false;
-  server.send(404, "text/plain", "404: Not found"); 
+void twinkleRandom(int Count, int SpeedDelay) {
+  for (int i=0; i<Count; i++) {
+     server.handleClient();
+     strip.setPixelColor(random(NUM_LEDS),random(0,255),random(0,255),random(0,255));
+     strip.show();
+     delay(SpeedDelay);
+   }
+  server.handleClient();
+  delay(SpeedDelay);
 }
-
+void strobe(){ 
+ server.handleClient();
+ setColor(strip.Color(0,0,0));
+ delay(50);
+ setColor(strip.Color(r,g,b));
+ delay(50);
+}

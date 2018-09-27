@@ -241,19 +241,19 @@ body{
       <a href="red2"><button id="red2"></button></a>
       <a href="green2"><button id="green2"></button></a>
       <a href="blue2"><button id="blue2"></button></a>
-      <a href="strobe"><button class="function">STROBE</button></a>
+      <a href="Strobe"><button class="function">Strobe</button></a>
       <div style="clear : both"></div>
 
       <a href="red3"><button id="red3"></button></a>
       <a href="green3"><button id="green3"></button></a>
       <a href="blue3"><button id="blue3"></button></a>
-      <a href="fade"><button class="function">FADE</button></a>
+      <a href="RAINBOW"><button class="function">RAINBOW</button></a>
       <div style="clear : both"></div>
 
       <a href="red4"><button id="red4"></button></a>
       <a href="green4"><button id="green4"></button></a>
       <a href="blue4"><button id="blue4"></button></a>
-      <a href="smooth"><button style="font-size: 11px;" class="function">SMOOTH</button></a>
+      <a href="TwinkleRandom"><button style="font-size: 11px;" class="function">TwinkleRandom</button></a>
       <div style="clear : both"></div>
 
       <script src="http://jscolor.com/release/2.0/jscolor-2.0.5/jscolor.js"></script>
