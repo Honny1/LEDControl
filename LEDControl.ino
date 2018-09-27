@@ -107,7 +107,7 @@ void setup() {
   delay(10);
 
   Serial.println('\n');
-
+  WiFi.mode(WIFI_STA);
   wifiMulti.addAP("Hony", "9E6wi76j");  
 
   Serial.println("Connecting ...");
@@ -139,7 +139,7 @@ void setup() {
     Strobe=true;
     while(Strobe){strobe();}
     Serial.print("Pressed: ");
-    Serial.println("up");
+    Serial.println("Strobe");
     delay(1000);
   });
   server.on("/TwinkleRandom", []() {
@@ -150,7 +150,7 @@ void setup() {
     setColor(strip.Color(0,0,0));
     while(TwinkleRandom){twinkleRandom(20, 100);}
     Serial.print("Pressed: ");
-    Serial.println("up");
+    Serial.println("TwinkleRandom");
     delay(1000);
   });
   server.on("/RAINBOW", []() {
@@ -160,7 +160,7 @@ void setup() {
     Strobe=false;
     while(RAINBOW){rainbow(20);}
     Serial.print("Pressed: ");
-    Serial.println("up");
+    Serial.println("RAINBOW");
     delay(1000);
   });
   server.on("/lightup", []() {
