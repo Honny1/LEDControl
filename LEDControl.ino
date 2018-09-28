@@ -15,7 +15,7 @@ void handleRoot();
 void handleSetColor();
 void handleNotFound();
 
-#define NUM_LEDS          60
+#define NUM_LEDS          160
 #define PIN D5
 #define ON                N/A
 #define OFF               3
@@ -68,8 +68,8 @@ void brightnessMinus(){
 void setColor(uint32_t c) {
     for(uint16_t i=0; i<strip.numPixels(); i++) {
     strip.setPixelColor(i, c);
-    strip.show();
     }
+    strip.show();
 }
 void RGB(unsigned long value) {
    r = value >> 16; 
@@ -122,7 +122,7 @@ void setup() {
   Serial.print("IP address:\t");
   Serial.println(WiFi.localIP());           
 
-  if (MDNS.begin("LedControl")) {              
+  if (MDNS.begin("ledcontrol")) {              
     Serial.println("mDNS responder started");
   } else {
     Serial.println("Error setting up MDNS responder!");
@@ -367,7 +367,7 @@ void setup() {
   });
   server.begin();
   Serial.println("HTTP server started");
-  
+  MDNS.addService("http", "tcp", 80);
 }
 
 
@@ -412,10 +412,7 @@ void handleSetColor() {
 }
 
 void handleNotFound(){
-  RAINBOW=false;
-  Strobe=false;
-  TwinkleRandom=false;
-  server.send(404, "text/plain", "404: Not found"); 
+  server.send(404, "text/plain", "404: Not found... Hony to jeste neudelal..."); 
 }
 
 uint32_t Wheel(byte WheelPos) {

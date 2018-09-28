@@ -53,7 +53,7 @@ body{
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.2s;
   cursor: pointer;
-  text-align: center;
+  /*text-align: center;*/
   font-family: 'Lato', sans-serif;
   font-weight: bold;
   outline:none;
@@ -86,31 +86,37 @@ body{
   font-family: Lato, sans-serif;
   font-weight: bold;}
 #off {
-  font-size: 25px;
+  font-size: 20px;
   background-color: black;
-  color: white; }
+  color: white; 
+  text-align: left;}
 #off:hover {
-  font-size: 25px;
+  font-size: 20px;
   background-color: white;
   border: 2px solid black;
-  color: black; }
+  color: black; 
+  text-align: left;}
 
 #on {
-  font-size: 25px;
+  font-size: 20px;
   background-color: red;  
-  color: white; }
+  color: white;
+  text-align: center;}
 #on:hover {
-  font-size: 28px;
+  font-size: 20px;
   text-align: center;
   background-color: white;
   border: 2px solid red;
-  color: red; }
+  color: red;
+  text-align: center;}
 
-#red {  background-color: #FF191B;  }
+#red {  background-color: #FF191B; 
+text-align: center;}
 #red:hover {
   background-color: white;
   border: 2px solid #FF191B;
-  color: black; }
+  color: black; 
+  text-align: center;}
 
 #red1 { background-color: #FF5319;  }
 #red1:hover {
@@ -189,23 +195,28 @@ body{
 #blue4:hover {
   background-color: white;
   border: 2px solid #BE11E3;
-  color: black; }
+  color: black; 
+  text-align: center;}
 
 #white {
   background-color: white;
-  color: black; }
+  color: black;
+  text-align: center;}
 #white:hover {
   background-color: white;
   border: 2px solid black;
-  color: black; }
+  color: black;
+  text-align: center;}
 .function1 {
-  font-size: 25px;  }
+  font-size: 20px; 
+  text-align: center;}
 .function1:hover {
   background-color: white;
   /*border: 2px solid #5A6170;*/
   color: black;
   font-size: 20px;
-  text-align: center;  }
+  text-align: center;  
+  text-align: center;}
 .function {
   font-size: 13px;
   background-color: rgba(90, 97, 112, 0.75);
@@ -214,54 +225,61 @@ body{
   background-color: white;
   border: 2px solid #5A6170;
   color: black;
-  font-size: 15px;
+  font-size: 13px;
   text-align: center;  }
     </style>
   </head>
   <body>
-    <div style="min-width: 290px; text-align: center;" id="container">
-      <a href="lightup"><button class="power" >+</button></a>
-      <a href="lightdown"><button class="power" >-</button></a>
-      <a href="off"><button id="off" class="off">OFF</button></a>
-      <a href="on"><button id="on" class="function1">ON</button></a>
+  <div style="min-width: 290px; text-align: center;" id="container">
+  <center>
+  <table>
+  <tr> 
+      <td><a href="lightup"><button class="power" >+</button></a></td>
+      <td><a href="lightdown"><button class="power" >-</button></a></td>
+      <td><a href="off"><button id="off" class="off">OFF</button></a></td>
+      <td><a href="on"><button id="on" class="function1">ON</button></a></td>
       <div style="clear : both"></div>
-
-      <a href="red"><button id="red">R</button></a>
-      <a href="green"><button id="green">G</button></a>
-      <a href="blue"><button id="blue">B</button></a>
-      <a href="white"><button id="white">W</button></a>
+  </tr>
+  <tr>
+      <td><a href="red"><button id="red">R</button></a></td>
+      <td><a href="green"><button id="green">G</button></a></td>
+      <td><a href="blue"><button id="blue">B</button></a></td>
+      <td><a href="white"><button id="white">W</button></a></td>
       <div style="clear : both"></div>
-
-      <a href="red1"><button id="red1"></button></a>
-      <a href="green1"><button id="green1"></button></a>
-      <a href="blue1"><button id="blue1"></button></a>
-      <a href="flash"><button class="function">FLASH</button></a>
+  </tr>
+  <tr>
+      <td><a href="red1"><button id="red1"></button></a></td>
+      <td><a href="green1"><button id="green1"></button></a></td>
+      <td><a href="blue1"><button id="blue1"></button></a></td>
+      <td><a href="flash"><button class="function">Flash</button></a></td>
       <div style="clear : both"></div>
-
-      <a href="red2"><button id="red2"></button></a>
-      <a href="green2"><button id="green2"></button></a>
-      <a href="blue2"><button id="blue2"></button></a>
-      <a href="Strobe"><button class="function">Strobe</button></a>
+  </tr>
+  <tr>
+      <td><a href="red2"><button id="red2"></button></a></td>
+      <td><a href="green2"><button id="green2"></button></a></td>
+      <td><a href="blue2"><button id="blue2"></button></a></td>
+      <td><a href="Strobe"><button class="function">Strobe</button></a></td>
       <div style="clear : both"></div>
-
-      <a href="red3"><button id="red3"></button></a>
-      <a href="green3"><button id="green3"></button></a>
-      <a href="blue3"><button id="blue3"></button></a>
-      <a href="RAINBOW"><button class="function">RAINBOW</button></a>
+  </tr>
+  <tr>
+      <td><a href="red3"><button id="red3"></button></a></td>
+      <td><a href="green3"><button id="green3"></button></a></td>
+      <td><a href="blue3"><button id="blue3"></button></a></td>
+      <td><a href="RAINBOW"><button class="function">Rainbow</button></a></td>
       <div style="clear : both"></div>
-
-      <a href="red4"><button id="red4"></button></a>
-      <a href="green4"><button id="green4"></button></a>
-      <a href="blue4"><button id="blue4"></button></a>
-      <a href="TwinkleRandom"><button style="font-size: 11px;" class="function">TwinkleRandom</button></a>
+  </tr>
+  <tr>
+      <td><a href="red4"><button id="red4"></button></a></td>
+      <td><a href="green4"><button id="green4"></button></a></td>
+      <td><a href="blue4"><button id="blue4"></button></a></td>
+      <td><a href="TwinkleRandom"><button style="font-size: 11px;" class="function">Twinkle Random</button></a></td>
       <div style="clear : both"></div>
-
+  </tr>
       <script src="http://jscolor.com/release/2.0/jscolor-2.0.5/jscolor.js"></script>
-      <center>
         <form action="SetColor" method="POST">
-          <table>
+          
             <tr>
-              <td>
+              <td colspan="3">
                 <input style="width: 200px; text-align: center;" valign="bottom" align="bottom" name="color" placeholder="color" id="background-color" value="ABE60B" class="jscolor {text-align: center; position: center, borderColor:'#FFF', insetColor:'#FFF', backgroundColor:'#424242', }" class="mui-input">
               </td>
                 <td>
