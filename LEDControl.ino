@@ -108,6 +108,7 @@ void setup() {
 
   Serial.println('\n');
   WiFi.mode(WIFI_STA);
+  WiFi.hostname("ledcontrol");
   wifiMulti.addAP("Hony", "9E6wi76j");  
 
   Serial.println("Connecting ...");
@@ -116,6 +117,8 @@ void setup() {
     delay(250);
     Serial.print('.');
   }
+  
+  
   Serial.println('\n');
   Serial.print("Connected to ");
   Serial.println(WiFi.SSID());               
