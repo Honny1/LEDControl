@@ -30,7 +30,13 @@ const char INDEX_HTML[] PROGMEM = R"=====(<!DOCTYPE HTML>
         -o-transition: border-color .15s linear,background .15s linear;
         transition: border-color .15s linear,background .15s linear;
 }
-    
+
+.wrap {
+    text-align: center;
+}
+.center-block {
+    display: inline-block;
+}
 body{
     background-color: rgba(0, 0, 0, 0.75);
     font-family: Lato, sans-serif;
@@ -185,10 +191,10 @@ text-align: center;}
   border: 2px solid #5D2AE3;
   color: black; }
 
-#blue3 {  background-color: #9025DE;  }
+#blue3 {  background-color: #906090;  }
 #blue3:hover {
   background-color: white;
-  border: 2px solid #9025DE;
+  border: 2px solid #906090;
   color: black; }
 
 #blue4 {  background-color: #BE11E3;  }
@@ -234,45 +240,45 @@ text-align: center;}
   <center>
   <table>
   <tr> 
-      <td><a href="lightup"><button class="power" >+</button></a></td>
-      <td><a href="lightdown"><button class="power" >-</button></a></td>
-      <td><a href="off"><button id="off" class="off">OFF</button></a></td>
-      <td><a href="on"><button id="on" class="function1">ON</button></a></td>
+      <td><a href="lightup"><button class="power,center-block" >+</button></a></td>
+      <td><a href="lightdown"><button class="power,center-block" >-</button></a></td>
+      <td><a href="off"><button id="off" class="off,center-block">OFF</button></a></td>
+      <td><a href="on"><button id="on" class="function1,center-block">ON</button></a></td>
       <div style="clear : both"></div>
   </tr>
   <tr>
-      <td><a href="red"><button id="red">R</button></a></td>
-      <td><a href="green"><button id="green">G</button></a></td>
-      <td><a href="blue"><button id="blue">B</button></a></td>
-      <td><a href="white"><button id="white">W</button></a></td>
+      <td><a href="red"><button id="red" class="center-block">R</button></a></td>
+      <td><a href="green"><button id="green" class="center-block">G</button></a></td>
+      <td><a href="blue"><button id="blue" class="center-block">B</button></a></td>
+      <td><a href="white"><button id="white"class="center-block">W</button></a></td>
       <div style="clear : both"></div>
   </tr>
   <tr>
-      <td><a href="red1"><button id="red1"></button></a></td>
-      <td><a href="green1"><button id="green1"></button></a></td>
-      <td><a href="blue1"><button id="blue1"></button></a></td>
-      <td><a href="flash"><button class="function">Flash</button></a></td>
+      <td><a href="red1"><button id="red1" class="center-block"></button></a></td>
+      <td><a href="green1"><button id="green1" class="center-block"></button></a></td>
+      <td><a href="blue1"><button id="blue1" class="center-block"></button></a></td>
+      <td><a href="Breathing"><button class="function,center-block">Breathing</button></a></td>
       <div style="clear : both"></div>
   </tr>
   <tr>
-      <td><a href="red2"><button id="red2"></button></a></td>
-      <td><a href="green2"><button id="green2"></button></a></td>
-      <td><a href="blue2"><button id="blue2"></button></a></td>
-      <td><a href="Strobe"><button class="function">Strobe</button></a></td>
+      <td><a href="red2"><button id="red2" class="center-block"></button></a></td>
+      <td><a href="green2"><button id="green2" class="center-block"></button></a></td>
+      <td><a href="blue2"><button id="blue2" class="center-block"></button></a></td>
+      <td><a href="Strobe"><button class="function,center-block">Strobe</button></a></td>
       <div style="clear : both"></div>
   </tr>
   <tr>
-      <td><a href="red3"><button id="red3"></button></a></td>
-      <td><a href="green3"><button id="green3"></button></a></td>
-      <td><a href="blue3"><button id="blue3"></button></a></td>
-      <td><a href="RAINBOW"><button class="function">Rainbow</button></a></td>
+      <td><a href="red3"><button id="red3" class="center-block"></button></a></td>
+      <td><a href="green3"><button id="green3" class="center-block"></button></a></td>
+      <td><a href="blue3"><button id="blue3" class="center-block"></button></a></td>
+      <td><a href="RAINBOW"><button class="function,center-block">Rainbow</button></a></td>
       <div style="clear : both"></div>
   </tr>
   <tr>
-      <td><a href="red4"><button id="red4"></button></a></td>
-      <td><a href="green4"><button id="green4"></button></a></td>
-      <td><a href="blue4"><button id="blue4"></button></a></td>
-      <td><a href="TwinkleRandom"><button style="font-size: 11px;" class="function">Twinkle Random</button></a></td>
+      <td><a href="red4"><button id="red4" class="center-block"></button></a></td>
+      <td><a href="green4"><button id="green4" class="center-block"></button></a></td>
+      <td><a href="blue4"><button id="blue4" class="center-block"></button></a></td>
+      <td><a href="TwinkleRandom"><button style="font-size: 11px;" class="function,center-block">Twinkle Random</button></a></td>
       <div style="clear : both"></div>
   </tr>
       <script src="http://jscolor.com/release/2.0/jscolor-2.0.5/jscolor.js"></script>
