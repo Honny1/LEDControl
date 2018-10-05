@@ -43,7 +43,7 @@ void handleNotFound();
  
 unsigned long rgb = 0;
 int brightness = 0;   
-int fadeAmount = 5;
+int fadeAmount = 3;
 byte r,g,b;
 int color1=6;
 int color2=6;
@@ -500,12 +500,14 @@ void strobe(){
  delay(50);
 }
 void breathing(){
+  Serial.println(brightness);
+  ledColor(color1);
   strip.setBrightness(brightness);
   strip.show();
   server.handleClient(); 
   brightness = brightness + fadeAmount;
-  if (brightness <= 0 || brightness >= 255) {
+  if (brightness <= 0 || brightness >= 100) {
     fadeAmount = -fadeAmount;
   }
-  delay(30);
+  delay(125);
 }
