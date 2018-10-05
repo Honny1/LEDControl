@@ -37,11 +37,13 @@ void handleNotFound();
  
 #define BLUE_RED          16
 #define PURPLE_DARK       17
-#define TODA     18
+#define PURPLE_LIGHT      18
 #define PINK              19
 
  
 unsigned long rgb = 0;
+int brightness = 0;   
+int fadeAmount = 5;
 byte r,g,b;
 int color1=6;
 int color2=6;
@@ -96,7 +98,7 @@ void ledColor(int color) {
     case GREEN_BLUE3   : RGB(0x000055FF); break;
     case BLUE_RED      : RGB(0x00000080); break;
     case PURPLE_DARK   : RGB(0x003F0080); break;
-    case TODA          : RGB(0x00906090); break;
+    case PURPLE_LIGHT  : RGB(0x007A00BF); break;
     case PINK          : RGB(0x00FF00FF); break;
   }
   setColor(strip.Color(r,g,b));
@@ -144,7 +146,7 @@ void setup() {
     Breathing=true;
     while(Breathing){breathing();}
     Serial.print("Pressed: ");
-    Serial.println("Strobe");
+    Serial.println("Breathing");
     delay(1000);
   });
    server.on("/Strobe", []() {
@@ -498,17 +500,12 @@ void strobe(){
  delay(50);
 }
 void breathing(){
-  for(int i; i>100; i++){
-    strip.setBrightness(i);
-    strip.show();
-    server.handleClient();
+  strip.setBrightness(brightness);
+  strip.show();
+  server.handleClient(); 
+  brightness = brightness + fadeAmount;
+  if (brightness <= 0 || brightness >= 255) {
+    fadeAmount = -fadeAmount;
   }
-  
-  server.handleClient();
-  
-  for(int i=100; i>0; i--){
-    strip.setBrightness(i);
-    strip.show();
-    server.handleClient();
-  }
+  delay(30);
 }
