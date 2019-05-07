@@ -296,7 +296,7 @@ text-align: center;}
       <div style="clear : both"></div>
 
       <div class="paticka" style="text-align: center;">
-        <p style="text-align: center; font-size: 75%; border:0%; padding:0%"> Copyright &copy; 2018, By Hony & <a href="https://buchticka.eu">Buchticka.eu</a> Team</p>
+        <p style="text-align: center; font-size: 75%; border:0%; padding:0%"> Copyright &copy; 2018, By Hony</p>
       </div>
     </div>
   </body>

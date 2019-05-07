@@ -112,7 +112,7 @@ void setup() {
   Serial.println('\n');
   WiFi.mode(WIFI_STA);
   WiFi.hostname("ledcontrol");
-  wifiMulti.addAP("Hony", "9E6wi76j");  
+  wifiMulti.addAP("RuMaNoc", "NaNoc-341");  
 
   Serial.println("Connecting ...");
   int i = 0;
