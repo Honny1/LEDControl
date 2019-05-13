@@ -109,7 +109,7 @@ void setup() {
   strip.show();
   delay(10);
 
-  Serial.println('\n');
+  /*Serial.println('\n');
   WiFi.mode(WIFI_STA);
   WiFi.hostname("ledcontrol");
   wifiMulti.addAP("RuMaNoc", "NaNoc-341");  
@@ -127,7 +127,20 @@ void setup() {
   Serial.println(WiFi.SSID());               
   Serial.print("IP address:\t");
   Serial.println(WiFi.localIP());           
+*/
 
+
+  IPAddress local_IP(192,168,4,1);
+  IPAddress gateway(192,168,4,9);
+  IPAddress subnet(255,255,255,0);
+  Serial.print("Setting soft-AP configuration ... ");
+  Serial.println(WiFi.softAPConfig(local_IP, gateway, subnet) ? "Ready" : "Failed!");
+
+  Serial.print("Setting soft-AP ... ");
+  Serial.println(WiFi.softAP("LEDAP") ? "Ready" : "Failed!");
+
+  Serial.print("Soft-AP IP address = ");
+  Serial.println(WiFi.softAPIP());
   if (MDNS.begin("ledcontrol")) {              
     Serial.println("mDNS responder started");
   } else {
@@ -447,7 +460,7 @@ void handleSetColor() {
     g = (number & 0x00ff00) >> 8;
     b = (number & 0x0000ff);
     setColor(strip.Color(r,g,b));
-    server.arg("color")=hexstring;
+    //server.arg("color")=hexstring;
     server.send(200, "text/html", INDEX_HTML);
     return;
   }
